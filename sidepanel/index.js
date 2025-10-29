@@ -13,12 +13,16 @@ const sliderTemperature = document.body.querySelector('#temperature');
 const sliderTopK = document.body.querySelector('#top-k');
 const labelTemperature = document.body.querySelector('#label-temperature');
 const labelTopK = document.body.querySelector('#label-top-k');
-
+const buttonDownload = document.body.querySelector('#button-download');
 const inputImage = document.body.querySelector("#equation")
 
 let session;
 
 async function runPrompt(prompt, params) {
+
+    console.log(await LanguageModel.availability());
+
+
     const session = await LanguageModel.create({
       expectedInputs: [{ type: "image" }],
     });
@@ -91,6 +95,16 @@ sliderTemperature.addEventListener('input', (event) => {
 sliderTopK.addEventListener('input', (event) => {
   labelTopK.textContent = event.target.value;
   reset();
+});
+
+buttonDownload.addEventListener('click', async (event) => {
+  const session = await LanguageModel.create({
+  monitor(m) {
+    m.addEventListener('downloadprogress', (e) => {
+      console.log(`Downloaded ${e.loaded * 100}%`);
+    });
+  },
+});
 });
 
 buttonPrompt.addEventListener('click', async () => {
