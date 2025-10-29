@@ -14,7 +14,7 @@ async function runPrompt(prompt, params) {
       expectedInputs: [{ type: "image" }],
     });
     const prompt2 =
-      "Output the raw latex equivalent";
+      "Convert this to latex";
 
     const stream = session.promptStreaming([
       {
