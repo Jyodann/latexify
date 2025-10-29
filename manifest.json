@@ -1,5 +1,5 @@
 {
-  "name": "Chrome Prompt AI Demo",
+  "name": "Latexify",
   "version": "0.2",
   "manifest_version": 3,
   "description": "Try Chrome's built-in prompt API built with Gemini Nano.",

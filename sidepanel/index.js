@@ -19,15 +19,12 @@ const inputImage = document.body.querySelector("#equation")
 let session;
 
 async function runPrompt(prompt, params) {
-
     console.log(await LanguageModel.availability());
-
-
     const session = await LanguageModel.create({
       expectedInputs: [{ type: "image" }],
     });
     const prompt2 =
-      "Write the latex for this equation";
+      "Write the latex equivalent:";
 
     console.log(inputImage.files)
     const stream = session.promptStreaming([
@@ -108,9 +105,9 @@ buttonDownload.addEventListener('click', async (event) => {
 });
 
 buttonPrompt.addEventListener('click', async () => {
-  const prompt = inputPrompt.value.trim();
+  // const prompt = inputPrompt.value.trim();
   showLoading();
-  const response =await runPrompt(prompt, prompt)
+  const response =await runPrompt("", "")
   showResponse(response)
 });
 
